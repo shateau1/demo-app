@@ -50,6 +50,7 @@ jobs:
     docker:
       - image: cimg/node:18.10.0
     steps:
+      - heroku/install
       - heroku/release-docker-image:
           app-name: local-demo-app
           process-types: web
