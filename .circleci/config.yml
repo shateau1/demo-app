@@ -36,3 +36,4 @@ jobs:
       - checkout
       - heroku/install
       - heroku/check-authentication
+      - heroku/push-docker-image
