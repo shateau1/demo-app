@@ -41,4 +41,6 @@ jobs:
       - heroku/check-authentication
       - setup_remote_docker:
           version: 20.10.14
-      - heroku/push-docker-image
+      - heroku/push-docker-image:
+          app-name: $HEROKU_APP_NAME
+          process-types: web
