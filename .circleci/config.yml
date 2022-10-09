@@ -3,7 +3,7 @@ orbs:
   heroku: circleci/heroku@2.0.0
 
 workflows:
-  test-build-deploy:
+  test-build-release:
     jobs:
       - tests
       - build:
@@ -24,14 +24,14 @@ jobs:
           name: Install npm dependencies
           command: |
             npm install --save
-      # - run:
-      #     name: Run Unit tests
-      #     command: |
-      #       npx mocha tests/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
-      # - store_test_results:
-      #     path: tets-results
-      # - store_artifacts:
-      #     path: tets-results
+      - run:
+          name: Run Unit tests
+          command: |
+            npx mocha tests/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
+      - store_test_results:
+          path: tets-results
+      - store_artifacts:
+          path: tets-results
 
   build:
     docker:
