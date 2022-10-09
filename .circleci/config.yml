@@ -6,7 +6,7 @@ workflows:
   build_tests:
     jobs:
       - run_tests
-      - build-docker_image
+      - build_docker_image
           # image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           # tag: $CIRCLE_BRANCH.$CIRCLE_SHA1
 
@@ -29,22 +29,27 @@ jobs:
       # - store_artifacts:
       #     path: tets-results
 
-  build-docker_image:
+  build_docker_image:
     docker:
       - image: cimg/node:18.10.0
         auth:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
+    environment:
+      PORT: 80
     steps:
       - checkout
       - heroku/install
       - heroku/check-authentication
       - setup_remote_docker:
           version: 20.10.14
-      - run: heroku apps
       - heroku/push-docker-image:
           app-name: local-demo-app
           process-types: web
       - heroku/release-docker-image:
           app-name: local-demo-app
           process-types: web
+
+###Known issues:
+# Heroku app name variable is not forwarfing inside job, "heroku apps" command shows no apps. 
+#    Hardcoded app name as a result

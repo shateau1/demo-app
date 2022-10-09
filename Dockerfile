@@ -8,7 +8,6 @@ COPY ./src ./src/
 RUN  \
     addgroup -S app && adduser -h /usr/app -G app -S app \
     && chown -R app:app /usr/app
-EXPOSE 3000
 
 FROM builder as final_build
 WORKDIR /usr/app
