@@ -6,7 +6,6 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${ PORT }`);
 });
 
-
 app.get("/healthcheck", (req, res, next) => {
   res.send("OK");
 });

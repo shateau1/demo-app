@@ -1,5 +1,4 @@
 FROM node:16.17.1-alpine3.15 as builder
-
 WORKDIR /usr/app
 
 COPY package*.json /usr/app/

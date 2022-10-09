@@ -7,8 +7,6 @@ workflows:
     jobs:
       - run_tests
       - build_docker_image
-          # image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
-          # tag: $CIRCLE_BRANCH.$CIRCLE_SHA1
 
 jobs:
   run_tests:
@@ -45,10 +43,8 @@ jobs:
           version: 20.10.14
       - heroku/push-docker-image:
           app-name: local-demo-app
-          process-types: web
       - heroku/release-docker-image:
           app-name: local-demo-app
-          process-types: web
 
 ###Known issues:
 # Heroku app name variable is not forwarfing inside job, "heroku apps" command shows no apps. 
