@@ -3,14 +3,19 @@ orbs:
   heroku: circleci/heroku@2.0.0
 
 workflows:
-  build_tests:
+  test-build-deploy:
     jobs:
-      - run_tests
-      - build_docker_image
-      - release_app
+      - tests
+      - build:
+          requires:
+            - tests
+      - release:
+          requires:
+            - build
+          type: approval
 
 jobs:
-  run_tests:
+  tests:
     docker:
       - image: cimg/node:18.10.0
     steps:
@@ -28,7 +33,7 @@ jobs:
       # - store_artifacts:
       #     path: tets-results
 
-  build_docker_image:
+  build:
     docker:
       - image: cimg/node:18.10.0
         auth:
@@ -46,7 +51,7 @@ jobs:
           app-name: local-demo-app
           process-types: web
 
-  release_app:
+  release:
     docker:
       - image: cimg/node:18.10.0
         auth:
