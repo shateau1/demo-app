@@ -6,8 +6,7 @@ workflows:
   build_tests:
     jobs:
       - run_tests
-      - build_docker_image
-
+      - build-docker_image
           # image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           # tag: $CIRCLE_BRANCH.$CIRCLE_SHA1
 
@@ -30,7 +29,7 @@ jobs:
       # - store_artifacts:
       #     path: tets-results
 
-  build-docker-image:
+  build-docker_image:
     docker:
       - image: cimg/node:18.10.0
     steps:
