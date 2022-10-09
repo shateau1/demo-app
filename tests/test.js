@@ -1,9 +1,9 @@
 var request = require("request"),
     assert = require('assert'),
     demoApp = require("../src/app.js"),
-    base_url = "http://localhost:3000/";
+    base_url = "http://localhost:3000";
 
-describe("Welcome to CI/CD Server", function() {
+describe("Test healthcheck", function() {
 
   describe("GET /healthcheck", function() {
     it("returns status code 200", function(done) {
