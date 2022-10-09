@@ -5,7 +5,7 @@ var request = require("request"),
 
 describe("Welcome to CI/CD Server", function() {
 
-  describe("GET /", function() {
+  describe("GET /healthcheck", function() {
     it("returns status code 200", function(done) {
       request.get(base_url, function(error, response, body) {
         assert.equal(200, response.statusCode);
@@ -13,13 +13,5 @@ describe("Welcome to CI/CD Server", function() {
         done();
       });
     });
-  });
-
-  describe("welcomeMessage", function (){
-    it("Validate Message", function(){
-      var res = helloWorld.welcomeMessage();
-      var message = "Welcome to CI/CD 101 using CircleCI!";
-      assert.equal(res, message);
-    });  
   });
 });
