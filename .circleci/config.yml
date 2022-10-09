@@ -43,5 +43,5 @@ jobs:
           version: 20.10.14
       - run: heroku apps
       - heroku/push-docker-image:
-          app-name: $HEROKU_APP_NAME
+          app-name: local-demo-app
           process-types: web
