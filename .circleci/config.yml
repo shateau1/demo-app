@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Run Unit tests
           command: |
-            ./node_modules/mocha/bin/mocha test/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
+            mnpx mocha test/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
       - store_test_results:
           path: tets-results
       - store_artifacts:
