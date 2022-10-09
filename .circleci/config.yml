@@ -49,8 +49,13 @@ jobs:
   release_app:
     docker:
       - image: cimg/node:18.10.0
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
       - heroku/install
+      - setup_remote_docker:
+          version: 20.10.14
       - heroku/release-docker-image:
           app-name: local-demo-app
           process-types: web
