@@ -35,6 +35,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     environment:
       PORT: 80
+      HEROKU_APP_NAME: local-demo-app
     steps:
       - checkout
       - heroku/install
@@ -42,10 +43,10 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
       - heroku/push-docker-image:
-          app-name: local-demo-app
+          app-name: $HEROKU_APP_NAME
           process-types: web
       - heroku/release-docker-image:
-          app-name: local-demo-app
+          app-name: $HEROKU_APP_NAME
           process-types: web
 
 ###Known issues:
