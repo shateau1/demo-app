@@ -1,7 +1,7 @@
 var request = require("request"),
     assert = require('assert'),
     demoApp = require("../src/app.js"),
-    base_url = "http://localhost:3000";
+    base_url = "http://localhost:3000/healthcheck";
 
 describe("Test healthcheck", function() {
 
