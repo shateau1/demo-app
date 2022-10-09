@@ -1,14 +1,12 @@
 var request = require("request"),
-    assert = require('assert'),
-    base_url = "http://localhost:3000/healthcheck";
+    url = "http://localhost:3000/healthcheck";
 
 describe("Test healthcheck", function() {
 
   describe("GET /healthcheck", function() {
-    it("returns status code 200", function(done) {
-      request.get(base_url, function(error, response, body) {
-        assert.equal(200, response.statusCode);
-        done();
+    it("returns status 200", function() {
+      request(url, function(error, response, body) {
+        expect(response.statusCode).to.equal(200);
       });
     });
   });
