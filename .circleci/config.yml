@@ -1,4 +1,16 @@
 version: 2.1
+orbs:
+  heroku: circleci/heroku@2.0.0
+
+workflows:
+  build_tests:
+    jobs:
+      - run_tests
+      - build_docker_image
+
+          # image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          # tag: $CIRCLE_BRANCH.$CIRCLE_SHA1
+
 jobs:
   run_tests:
     docker:
@@ -9,16 +21,19 @@ jobs:
           name: Install npm dependencies
           command: |
             npm install --save
-      - run:
-          name: Run Unit tests
-          command: |
-            npx mocha tests/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
-      - store_test_results:
-          path: tets-results
-      - store_artifacts:
-          path: tets-results
+      # - run:
+      #     name: Run Unit tests
+      #     command: |
+      #       npx mocha tests/ --reporter mochawesome --reporter-options reportDir=tets-results,reportFileName=tets-results
+      # - store_test_results:
+      #     path: tets-results
+      # - store_artifacts:
+      #     path: tets-results
 
-workflows:
-  build_tests:
-    jobs:
-      - run_tests
+  build-docker-image:
+    docker:
+      - image: cimg/node:18.10.0
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/check-authentication
