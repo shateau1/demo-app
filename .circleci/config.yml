@@ -45,3 +45,6 @@ jobs:
       - heroku/push-docker-image:
           app-name: local-demo-app
           process-types: web
+      - heroku/release-docker-image:
+          app-name: local-demo-app
+          process-types: web
